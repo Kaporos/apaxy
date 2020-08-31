@@ -106,12 +106,37 @@ var items = (document.getElementsByClassName("indexcolname"))
 for (let item of items){
 	var link = item.firstChild
 	link.text = link.text.replace("/","")
+	if (link.text === "Name"){
+		link.text = "Nom"
+	}
 
 }
+
+
+var items = (document.getElementsByClassName("indexcolsize"))
+
+for (let item of items){
+	var link = item.firstChild
+	if (link.text === "Size"){
+		link.text = "Taille"
+	}
+
+}
+
+var items = (document.getElementsByClassName("indexcollastmod"))
+
+for (let item of items){
+	var link = item.firstChild
+	if (link.text === "Last modified"){
+		link.text = "Dernière modification"
+	}
+
+}
+
 var xhttp = new XMLHttpRequest();
 
 
-var themes = ["cat","hacker","glitch","matrix","goat"]
+var themes = ["cat","hacker","glitch","matrix","goat","thug"]
 
 
 xhttp.onreadystatechange = function() {
@@ -121,5 +146,8 @@ xhttp.onreadystatechange = function() {
 		document.getElementById("gif").src = jsonResponse["data"]["embed_url"]
 	}
   };
-  xhttp.open("GET", "https://api.giphy.com/v1/gifs/random?apikey=API_KEY&tag="+choose(themes), true);
+  xhttp.open("GET", "https://api.giphy.com/v1/gifs/random?apikey=o1eaf3BpjJI5zBo8FHKWwcZNeHoJ3zfG&tag="+choose(themes), true);
   xhttp.send();
+
+
+
