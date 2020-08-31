@@ -2,7 +2,7 @@
 // https://codepen.io/chriscoyier/pen/tIuBL - MIT License
 (function(document) {
 	'use strict';
-
+	console.log("Hooked")
 	var TableFilter = (function(Arr) {
 
 		// the search bar element
@@ -69,7 +69,7 @@
 var uri = window.location.pathname.substr(1);
 var arr = uri.split('/');
 var url = ""
-var bread = '<li><strong><a href="/">Home</a></strong></li>';
+var bread = '<li><a style="font-weight: 500" href="/">Acceuil</a></li>';
 var cont = 1;
 arr.forEach(function(value){
         url = url + '/' + value;
@@ -90,3 +90,36 @@ if (uri.substring(uri.length-1) != '/'){
             a.href =  uri + '/' + a.getAttribute('href',2);
         }
 }
+
+
+
+
+//CUSTOM
+
+function choose(choices) {
+	var index = Math.floor(Math.random() * choices.length);
+	return choices[index];
+}
+
+var items = (document.getElementsByClassName("indexcolname"))
+
+for (let item of items){
+	var link = item.firstChild
+	link.text = link.text.replace("/","")
+
+}
+var xhttp = new XMLHttpRequest();
+
+
+var themes = ["cat","hacker","glitch","matrix","goat"]
+
+
+xhttp.onreadystatechange = function() {
+	if (this.readyState == 4 && this.status == 200) {
+		var jsonResponse = JSON.parse(this.responseText);
+		console.log(jsonResponse["data"]["embed_url"])
+		document.getElementById("gif").src = jsonResponse["data"]["embed_url"]
+	}
+  };
+  xhttp.open("GET", "https://api.giphy.com/v1/gifs/random?apikey=API_KEY&tag="+choose(themes), true);
+  xhttp.send();
